@@ -3,8 +3,8 @@ CREATE TABLE `Events` (
 	`name` varchar(100),
 	`type_id` INT NOT NULL,
 	`date` DATETIME NOT NULL,
-	`address` varchar DEFAULT '50',
-	`photo_link` varchar DEFAULT '200',
+	`address` varchar(50),
+	`photo_link` varchar(200),
 	`description` TEXT,
 	`city_id` INT NOT NULL,
 	PRIMARY KEY (`id`)
@@ -23,13 +23,14 @@ CREATE TABLE `Cities` (
 );
 
 CREATE TABLE `Users` (
-	`email` varchar(100) NOT NULL AUTO_INCREMENT,
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`email` varchar(100) NOT NULL,
 	`password` varchar(50) NOT NULL,
 	`first_name` varchar(100) NOT NULL,
 	`surname` varchar(50) NOT NULL,
 	`patronymic` varchar(50) NOT NULL,
 	`is_organizer` BOOLEAN NOT NULL,
-	PRIMARY KEY (`email`)
+	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `Subscriptions` (
@@ -58,4 +59,4 @@ ALTER TABLE `Subscriptions` ADD CONSTRAINT `Subscriptions_fk1` FOREIGN KEY (`cit
 
 ALTER TABLE `Registrations` ADD CONSTRAINT `Registrations_fk0` FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`);
 
-ALTER TABLE `Registrations` ADD CONSTRAINT `Registrations_fk1` FOREIGN KEY (`user_id`) REFERENCES `Users`(`email`);
+ALTER TABLE `Registrations` ADD CONSTRAINT `Registrations_fk1` FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`);
